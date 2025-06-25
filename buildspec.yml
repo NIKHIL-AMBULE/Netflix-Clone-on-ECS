@@ -4,9 +4,9 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 739275478550.dkr.ecr.us-east-1.amazonaws.com/techmahato-ecs-demo-ecr
-      - REPOSITORY_URI=739275478550.dkr.ecr.us-east-1.amazonaws.com/techmahato-ecs-demo-ecr
+      - aws --version287618183983.dkr.ecr.ap-south-1.amazonaws.com/netflix-repo
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 287618183983.dkr.ecr.ap-south-1.amazonaws.com/netflix-repo
+      - REPOSITORY_URI=287618183983.dkr.ecr.ap-south-1.amazonaws.com/netflix-repo
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
 
   build:
@@ -21,7 +21,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"techmahato-ecs-webapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"netflix-task","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
   files:
