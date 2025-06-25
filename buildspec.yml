@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws --version287618183983.dkr.ecr.ap-south-1.amazonaws.com/netflix-repo
+      - aws --version 287618183983.dkr.ecr.ap-south-1.amazonaws.com/netflix-repo
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 287618183983.dkr.ecr.ap-south-1.amazonaws.com/netflix-repo
       - REPOSITORY_URI=287618183983.dkr.ecr.ap-south-1.amazonaws.com/netflix-repo
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
